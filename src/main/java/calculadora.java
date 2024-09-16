@@ -4,79 +4,7 @@ import static java.lang.Math.sqrt;
 
 public class calculadora {
     public static void main(String[] args) {
-//        double [] numeros = new double[3];
-//        numeros[0] = 2;
-//        numeros[1] = 3;
-//        numeros[2] = 5;
-//        System.out.println(solucionCuadratica1(numeros));
-//        System.out.println(solucionCuadratica2(numeros));
-        double num = escogerNumero();
-        System.out.println(num);
-    }
-
-    public static double mayorDeNumeros(double[] numeros) {
-        return Arrays.stream(numeros).max().getAsDouble();
-    }
-
-    public static double menorDeNumeros(double[] numeros) {
-        return Arrays.stream(numeros).min().getAsDouble();
-    }
-
-    public static boolean numerosIguales(double [] numeros){
-        return numeros[0] == numeros[1];
-    }
-
-    public static String numeroMayor(double[] numeros){
-        if (numerosIguales(numeros)) {
-            return "Numeros iguales";
-        }else{
-            return "El número mayor es: " + mayorDeNumeros(numeros);
-        }
-    }
-
-    public static String numeroMenor(double[] numeros){
-        if (numerosIguales(numeros)) {
-            return "Numeros iguales";
-        } else {
-            return "El número menor es: " + menorDeNumeros(numeros);
-        }
-    }
-
-    public static void ejecutarNumeroMayor(double[] numeros){
-        System.out.println(numeroMayor(numeros));
-    }
-
-    public static void ejecutarNumeroMenor(double[] numeros){
-        System.out.println(numeroMenor(numeros));
-    }
-
-    public static double potenciaNumeros(double [] numeros){
-        return Math.pow(numeros[0], numeros[1]);
-    }
-
-    public static boolean ceroSobreCero(double[] numeros){
-        return numeros[0] == 0 && numeros[1] == 0;
-    }
-
-    public static String resultadoPotencia(double[] numeros){
-        if(ceroSobreCero(numeros)){
-            return "No se puede elevar cero sobre cero";
-        }
-        return "El resultado es: " + potenciaNumeros(numeros);
-    }
-
-    public static double porcentajeNumero(double[] numeros){
-        return (numeros[0]/100) * numeros[1]; //numero[0] es el porcentaje que quiero calcular.
-    }
-
-    //Este entrega el error NaN, que es not a number cuando la solucion es imaginaria
-    public static double solucionCuadratica1(double[] numeros){
-        return (-(numeros[1]) + sqrt((numeros[1]*numeros[1])-(4*numeros[0]*numeros[2]))) / (2*numeros[0]);
-    }
-
-    //Este entrega el error NaN, que es not a number cuando la solucion es imaginaria
-    public static double solucionCuadratica2(double[] numeros){
-        return (-(numeros[1]) - sqrt((numeros[1]*numeros[1])-(4*numeros[0]*numeros[2]))) / (2*numeros[0]);
+        ejecutarMenuPAV();
     }
 
     // Inicio de funciones sección 3
@@ -87,7 +15,6 @@ public class calculadora {
 
     public static double escogerNumero(){
         double option;
-        System.out.print("Ingrese el valor: ");
         while (true) {
             try {
                 option = crearScanner().nextDouble();
@@ -147,8 +74,87 @@ public class calculadora {
         return areaCirculo(radioBasal) + Math.PI*radioBasal*generatriz;
     }
 
-    public static double volumenCono (double radiobasal, double altura) {
-        return altura*Math.PI*Math.pow(radiobasal,2)/3;
+    public static double volumenCono (double radioBasal, double altura) {
+        return altura*Math.PI*Math.pow(radioBasal,2)/3;
+    }
+
+    public static void ejecutarMenuPAV(){
+        int opcion;
+        while (true) {
+            mostrarMenuPAV();
+            opcion = leerOpcionPAV();
+            if (opcion == 7) {
+                System.out.println("Cerrando menú...");
+                break;
+            } else {
+                ejecutarOpcionPAV(opcion);
+            }
+        }
+    }
+
+    public static void mostrarMenuPAV() {
+        System.out.println("\nOpciones de figuras: ");
+        System.out.println("1. Cuadrado (perímetro y área).");
+        System.out.println("2. Rectángulo (perímetro y área).");
+        System.out.println("3. Círculo (perímetro y área).");
+        System.out.println("4. Esféra (área y volumen).");
+        System.out.println("5. Cubo (área y volumen).");
+        System.out.println("6. Cono (área y volumen).");
+        System.out.println("7. Volver.");
+        System.out.print("Seleccione una opción: ");
+    }
+
+    public static int leerOpcionPAV() {
+        int opcion;
+        while (true) {
+            Scanner scanner = crearScanner();
+            if (scanner.hasNextInt()) {
+                opcion = scanner.nextInt();
+                if (opcion >= 1 && opcion <= 7) {
+                    break;
+                } else {
+                    System.out.print("Opción inválida. Intente nuevamente: ");
+                }
+            } else {
+                System.out.print("Entrada no válida. Ingrese un número: ");
+                scanner.next();
+            }
+        }
+        return opcion;
+    }
+
+    public static void ejecutarOpcionPAV(int opcion){
+        if (opcion == 1) {
+            System.out.print("Lados del cuadrado: ");
+            double lado = escogerNumero();
+            System.out.println("El perímetro del cuadrado es: "+perimetroCuadrado(lado)+" y el área del cuadrado es: "+areaCuadrado(lado));
+        } else if (opcion == 2) {
+            System.out.print("Lado a del rectángulo: ");
+            double lado1 = escogerNumero();
+            System.out.print("Lado b del rectángulo: ");
+            double lado2 = escogerNumero();
+            System.out.println("El perímetro del rectángulo es: "+perimetroRectangulo(lado1, lado2)+" y el área del rectángulo es: "+areaRectangulo(lado1, lado2));
+        } else if (opcion == 3) {
+            System.out.print("Radio del círculo: ");
+            double radio = escogerNumero();
+            System.out.println("El perímetro del círculo es: "+perimetroCirculo(radio)+" y el área del círculo es:"+areaCirculo(radio));
+        } else if (opcion == 4) {
+            System.out.print("Radio de la esféra: ");
+            double radio = escogerNumero();
+            System.out.println("El área de la esféra es: "+areaEsfera(radio)+" yl volumen de la esféra es: "+volumenEsfera(radio));
+        } else if (opcion == 5) {
+            System.out.print("Lados del cubo: ");
+            double lado = escogerNumero();
+            System.out.println("El área del cubo es: "+areaCubo(lado)+" y el volumen del cubo es: "+volumenCubo(lado));
+        } else if (opcion == 6) {
+            System.out.print("Radio basal del cono: ");
+            double radioBasal = escogerNumero();
+            System.out.print("Generatriz del cono: ");
+            double generatriz = escogerNumero();
+            System.out.print("Altura del cono: ");
+            double altura = escogerNumero();
+            System.out.println("El área del cono es: "+areaCono(radioBasal, generatriz)+" y el volumen del cono es: "+volumenCono(radioBasal, altura));
+        }
     }
 
 }
