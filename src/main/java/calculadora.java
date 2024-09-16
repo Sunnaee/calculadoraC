@@ -1,16 +1,48 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class calculadora {
-    public static void main(String[] args) {
-        double [][] ecuaciones = new double[2][3];
-        ecuaciones[0] = new double[]{1,1,1};
-        ecuaciones[1] = new double[]{1,1,2};
-        resultados(ecuaciones);
-
-    }
+    public static void main(String[] args) {}
 
     //SISTEMAS DE ECUACIONES
 
-    public static double determinante(double[][] ecuaciones){
+    public static void ejecutarEcuaciones(){
+        double [][] ecuaciones = new double[2][3];
+        mostrarOpcionesEcuaciones();
+        ingresarValoresEcuaciones(ecuaciones,"A",0,0);
+        ingresarValoresEcuaciones(ecuaciones,"B",0,1);
+        ingresarValoresEcuaciones(ecuaciones,"C",0,2);
+        ingresarValoresEcuaciones(ecuaciones,"D",1,0);
+        ingresarValoresEcuaciones(ecuaciones,"E",1,1);
+        ingresarValoresEcuaciones(ecuaciones,"F",1,2);
+        resultadosEcuaciones(ecuaciones);
+    }
+
+    public static Scanner scanner(){
+        return new Scanner(System.in);
+    }
+
+    public static void ingresarValoresEcuaciones(double [][] ecuaciones,String letra, int fila, int columna){
+        double numero;
+        while (true){
+            try{
+                System.out.print(letra + ": ");
+                numero = scanner().nextDouble();
+                break;
+            } catch (InputMismatchException e){
+                System.out.println("Entrada no valida. Ingrese un numero");
+            }
+        }
+        ecuaciones[fila][columna] = numero;
+    }
+
+    public static void mostrarOpcionesEcuaciones(){
+        System.out.println("Ingresa los valores de las ecuaciones:");
+        System.out.println("Forma ecuación:");
+        System.out.println("Ax + By = C\nDx + Ey = F");
+    }
+
+    public static double determinanteEcuaciones(double[][] ecuaciones){
         double a1 = ecuaciones[0][0];
         double b1 = ecuaciones[0][1];
         double a2 = ecuaciones[1][0];
@@ -18,7 +50,7 @@ public class calculadora {
         return (a1*b2)-(a2*b1);
     }
 
-    public static double determinanteX(double[][] ecuaciones){
+    public static double determinanteEcuacionesX(double[][] ecuaciones){
         double b1 = ecuaciones[0][1];
         double c1 = ecuaciones[0][2];
         double b2 = ecuaciones[1][1];
@@ -26,7 +58,7 @@ public class calculadora {
         return (c1*b2)-(c2*b1);
     }
 
-    public static double determinanteY(double[][] ecuaciones){
+    public static double determinanteEcuacionesY(double[][] ecuaciones){
         double a1 = ecuaciones[0][0];
         double c1 = ecuaciones[0][2];
         double a2 = ecuaciones[1][0];
@@ -35,23 +67,23 @@ public class calculadora {
     }
 
     public static double resultadoX(double[][] ecuaciones){
-        return (determinanteX(ecuaciones))/(determinante(ecuaciones));
+        return (determinanteEcuacionesX(ecuaciones))/(determinanteEcuaciones(ecuaciones));
     }
 
     public static double resultadoY(double[][] ecuaciones){
-        return (determinanteY(ecuaciones))/(determinante(ecuaciones));
+        return (determinanteEcuacionesY(ecuaciones))/(determinanteEcuaciones(ecuaciones));
     }
 
-    public static boolean determinanteDistintoCero(double[][] ecuaciones){
-        if (determinante(ecuaciones) != 0){
+    public static boolean determinanteEcuacionesDistintoCero(double[][] ecuaciones){
+        if (determinanteEcuaciones(ecuaciones) != 0){
             return true;
         } else{
             return false;
         }
     }
 
-    public static void resultados(double[][] ecuaciones){
-        if (determinanteDistintoCero(ecuaciones)){
+    public static void resultadosEcuaciones(double[][] ecuaciones){
+        if (determinanteEcuacionesDistintoCero(ecuaciones)){
             System.out.println("Soluciones:");
             System.out.println("x = " + resultadoX(ecuaciones));
             System.out.println("y = " + resultadoY(ecuaciones));

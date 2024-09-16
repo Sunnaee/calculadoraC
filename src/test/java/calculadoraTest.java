@@ -14,24 +14,24 @@ class calculadoraTest {
 
 
     @Test
-    void determinante(){
-        assertEquals(((1.2*3.3)-(1.2*2.3)),calculadora.determinante(ecuaciones));
+    void determinanteEcuaciones(){
+        assertEquals(((1.2*3.3)-(1.2*2.3)),calculadora.determinanteEcuaciones(ecuaciones));
         ecuaciones[0][0] = 0;
-        assertEquals(-2.76,calculadora.determinante(ecuaciones));
+        assertEquals(-2.76,calculadora.determinanteEcuaciones(ecuaciones));
     }
 
     @Test
-    void determinanteX(){
-        assertEquals(-2.3,calculadora.determinanteX(ecuaciones));
+    void determinanteEcuacionesX(){
+        assertEquals(-2.3,calculadora.determinanteEcuacionesX(ecuaciones));
         ecuaciones[0][1] = 0;
-        assertEquals(0,calculadora.determinanteX(ecuaciones));
+        assertEquals(0,calculadora.determinanteEcuacionesX(ecuaciones));
     }
 
     @Test
-    void determinanteY(){
-        assertEquals(1.2,calculadora.determinanteY(ecuaciones));
+    void determinanteEcuacionesY(){
+        assertEquals(1.2,calculadora.determinanteEcuacionesY(ecuaciones));
         ecuaciones[0][2] = 1;
-        assertEquals(0,calculadora.determinanteY(ecuaciones));
+        assertEquals(0,calculadora.determinanteEcuacionesY(ecuaciones));
     }
 
     @Test
@@ -50,10 +50,10 @@ class calculadoraTest {
     }
 
     @Test
-    void determinanteDistintoCero(){
-        assertTrue(calculadora.determinanteDistintoCero(ecuaciones));
+    void determinanteEcuacionesDistintoCero(){
+        assertTrue(calculadora.determinanteEcuacionesDistintoCero(ecuaciones));
         ecuaciones[1][1] = 2.3;
-        assertFalse(calculadora.determinanteDistintoCero(ecuaciones));
+        assertFalse(calculadora.determinanteEcuacionesDistintoCero(ecuaciones));
     }
 
 }
