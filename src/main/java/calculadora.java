@@ -2,7 +2,7 @@
 public class calculadora {
     public static void main(String[] args) {
         double [][] ecuaciones = new double[2][3];
-        ecuaciones[0] = new double[]{1,2,1};
+        ecuaciones[0] = new double[]{1,1,1};
         ecuaciones[1] = new double[]{1,1,2};
         resultados(ecuaciones);
 
@@ -42,10 +42,23 @@ public class calculadora {
         return (determinanteY(ecuaciones))/(determinante(ecuaciones));
     }
 
+    public static boolean determinanteDistintoCero(double[][] ecuaciones){
+        if (determinante(ecuaciones) != 0){
+            return true;
+        } else{
+            return false;
+        }
+    }
+
     public static void resultados(double[][] ecuaciones){
-        System.out.println("Soluciones:");
-        System.out.println("x = " + resultadoX(ecuaciones));
-        System.out.println("y = " + resultadoY(ecuaciones));
+        if (determinanteDistintoCero(ecuaciones)){
+            System.out.println("Soluciones:");
+            System.out.println("x = " + resultadoX(ecuaciones));
+            System.out.println("y = " + resultadoY(ecuaciones));
+        } else {
+            System.out.println("El sistema de ecuaciones tiene soluciones infinitas");
+        }
+
     }
 
 }
