@@ -1,16 +1,17 @@
 import java.util.Arrays;
-
+import java.util.Scanner;
 import static java.lang.Math.sqrt;
 
 public class calculadora {
     public static void main(String[] args) {
-        double [] numeros = new double[3];
-        numeros[0] = 2;
-        numeros[1] = 3;
-        numeros[2] = 5;
-        System.out.println(solucionCuadratica1(numeros));
-        System.out.println(solucionCuadratica2(numeros));
-
+//        double [] numeros = new double[3];
+//        numeros[0] = 2;
+//        numeros[1] = 3;
+//        numeros[2] = 5;
+//        System.out.println(solucionCuadratica1(numeros));
+//        System.out.println(solucionCuadratica2(numeros));
+        double num = escogerNumero();
+        System.out.println(num);
     }
 
     public static double mayorDeNumeros(double[] numeros) {
@@ -79,6 +80,28 @@ public class calculadora {
     }
 
     // Inicio de funciones sección 3
+
+    public static Scanner crearScanner() {
+        return new Scanner(System.in);
+    }
+
+    public static double escogerNumero(){
+        double option;
+        System.out.print("Ingrese el valor: ");
+        while (true) {
+            try {
+                option = crearScanner().nextDouble();
+                if (option > 0){
+                    break;
+                } else {
+                    System.out.print("Opción sale del rango. Inténtelo nuevamente (valores > 0): ");
+                }
+            } catch (Exception InputMismatchException) {
+                System.out.print("Entrada no válida. Ingrese un número: ");
+            }
+        }
+        return option;
+    }
 
     public static double perimetroCuadrado(double lado){
         return 4*lado;
