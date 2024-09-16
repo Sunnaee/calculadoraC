@@ -4,7 +4,6 @@ import static java.lang.Math.sqrt;
 
 public class calculadora {
     public static void main(String[] args) {
-        ejecutarMenuPAV();
     }
 
     // Inicio de funciones sección 3
