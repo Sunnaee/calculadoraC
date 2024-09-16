@@ -1,86 +1,70 @@
-import java.util.Arrays;
 
-import static java.lang.Math.sqrt;
+import java.util.Scanner;
 
 public class calculadora {
     public static void main(String[] args) {
-        double [] numeros = new double[3];
-        numeros[0] = 2;
-        numeros[1] = 3;
-        numeros[2] = 5;
-        System.out.println(solucionCuadratica1(numeros));
-        System.out.println(solucionCuadratica2(numeros));
-
+        calcularEcuacionRecta();
     }
 
-    public static double mayorDeNumeros(double[] numeros) {
-        return Arrays.stream(numeros).max().getAsDouble();
+    public static Scanner crearScanner() {
+        return new Scanner(System.in);
     }
 
-    public static double menorDeNumeros(double[] numeros) {
-        return Arrays.stream(numeros).min().getAsDouble();
-    }
-
-    public static boolean numerosIguales(double [] numeros){
-        return numeros[0] == numeros[1];
-    }
-
-    public static String numeroMayor(double[] numeros){
-        if (numerosIguales(numeros)) {
-            return "Numeros iguales";
-        }else{
-            return "El número mayor es: " + mayorDeNumeros(numeros);
+    public static double ingresoValor() {
+        double valor = 0;
+        while (true) {
+            System.out.print("Ingrese un valor: ");
+            Scanner scanner = crearScanner();
+            if (scanner.hasNextDouble()) {
+                valor = scanner.nextDouble();
+                break;
+            } else {
+                System.out.print("Entrada no válida. Ingrese un número: ");
+                scanner.next();
+            }
         }
+        return valor;
     }
 
-    public static String numeroMenor(double[] numeros){
-        if (numerosIguales(numeros)) {
-            return "Numeros iguales";
-        } else {
-            return "El número menor es: " + menorDeNumeros(numeros);
+    //5.- calcular la ecuación de una recta de la forma: Y = mX + b, dados 2 puntos de la recta (x1,y1) (x2,y2).
+    //m = pendiente; b = intersección con el eje y.
+
+    //Función para crear la matriz de los puntos de la recta.
+    public static double[][] matrizPuntosRecta(){
+        return new double[2][2];
+    }
+
+    //Función para ingresar los puntos de la recta a la matriz.
+    public static void ingresarPuntosRecta(double[][] matrizPuntos, double x1, double y1, double x2, double y2){
+        matrizPuntos[0] = new double[]{x1,y1};
+        matrizPuntos[1] = new double[]{x2,y2};
+    }
+
+    //Función para calcular la pendiente de la recta según los puntos.
+    public static double pendienteRecta(double[][] matrizPuntos){
+        double variacionY = matrizPuntos[1][1] - matrizPuntos[0][1];
+        double variacionX = matrizPuntos[1][0] - matrizPuntos[0][0];
+        if (variacionX == 0){
+            return 0;
         }
+        return variacionY/variacionX;
     }
 
-    public static void ejecutarNumeroMayor(double[] numeros){
-        System.out.println(numeroMayor(numeros));
+    //Función para calcular la intersección con el eje y de la recta.
+    public static double bRecta(double[][] matrizPuntos){
+        return (matrizPuntos[0][1] - (matrizPuntos[0][0] * pendienteRecta(matrizPuntos)));
     }
 
-    public static void ejecutarNumeroMenor(double[] numeros){
-        System.out.println(numeroMenor(numeros));
+    //Función para devolver en un enunciado la ecuación de la recta.
+    public static String resultadoEcuacionRecta(double m, double b){
+        return "La ecuación de la recta en forma Y = mX + b es: Y = "+m+"X "+b+".";
     }
 
-    public static double potenciaNumeros(double [] numeros){
-        return Math.pow(numeros[0], numeros[1]);
+    //Función para ejecutar los métodos necesarios para el cálculo de la ecuación de la recta e imprimir su resultado.
+    public static void calcularEcuacionRecta(){
+        double[][] matrizPuntos = matrizPuntosRecta();
+        System.out.println("Ingrese los datos en el siguiente orden: x1, y1, x2, y2:");
+        ingresarPuntosRecta(matrizPuntos, ingresoValor(), ingresoValor(), ingresoValor(), ingresoValor());
+        System.out.println(resultadoEcuacionRecta(pendienteRecta(matrizPuntos), bRecta(matrizPuntos)));
     }
-
-    public static boolean ceroSobreCero(double[] numeros){
-        return numeros[0] == 0 && numeros[1] == 0;
-    }
-
-    public static String resultadoPotencia(double[] numeros){
-        if(ceroSobreCero(numeros)){
-            return "No se puede elevar cero sobre cero";
-        }
-        return "El resultado es: " + potenciaNumeros(numeros);
-    }
-
-    public static double porcentajeNumero(double[] numeros){
-        return (numeros[0]/100) * numeros[1]; //numero[0] es el porcentaje que quiero calcular.
-    }
-
-    //Este entrega el error NaN, que es not a number cuando la solucion es imaginaria
-    public static double solucionCuadratica1(double[] numeros){
-        return (-(numeros[1]) + sqrt((numeros[1]*numeros[1])-(4*numeros[0]*numeros[2]))) / (2*numeros[0]);
-    }
-
-    //Este entrega el error NaN, que es not a number cuando la solucion es imaginaria
-    public static double solucionCuadratica2(double[] numeros){
-        return (-(numeros[1]) - sqrt((numeros[1]*numeros[1])-(4*numeros[0]*numeros[2]))) / (2*numeros[0]);
-    }
-
-
 }
-
-
-
-
