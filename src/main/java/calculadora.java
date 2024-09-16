@@ -7,6 +7,62 @@ import java.util.InputMismatchException;
 
 public class calculadora {
     public static void main(String[] args) {
+        menu();
+    }
+
+    public static void menu(){
+        while (true){
+            mostrarOpcionesMenu();
+            int opcion = leerOpcionMenu();
+            if (opcion == 6){
+                break;
+            } else {
+                ejecutarOpcionMenu(opcion);
+            }
+        }
+        System.out.println("Cerrrando programa...");
+    }
+
+    public static void ejecutarOpcionMenu(int opcion){
+        if (opcion == 1){
+            menuAritmetica();
+        } else if (opcion == 2){
+            ejecutarCuadratica();
+        } else if (opcion == 3){
+            ejecutarMenuPAV();
+        } else if (opcion == 4){
+            ejecutarEcuaciones();
+        } else if (opcion == 5){
+            calcularEcuacionRecta();
+        }
+    }
+
+    public static int leerOpcionMenu(){
+        int opcion;
+        while(true){
+            try{
+                System.out.print("Seleccione una opción: ");
+                opcion = scanner().nextInt();
+                if(opcion >= 1 && opcion <= 6){
+                    break;
+                } else {
+                    System.out.println("Ingrese un número valido.");
+                }
+            } catch (InputMismatchException e ){
+                System.out.println("Ingrese una entrada valida. Intente de nuevo.");
+            }
+        }
+        return opcion;
+    }
+
+    public static void mostrarOpcionesMenu(){
+        System.out.println("Calculadora cientifica: ");
+        System.out.println("1. Operaciones artiméticas.");
+        System.out.println("2. Ecuación cuadrática.");
+        System.out.println("3. Figuras geométricas.");
+        System.out.println("4. Sistema de ecuaciones lineales.");
+        System.out.println("5. Ecuación de la recta.");
+        System.out.println("6. Salir.");
     }
 
     public static Scanner crearScanner() {
