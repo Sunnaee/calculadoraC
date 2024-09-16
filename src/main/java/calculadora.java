@@ -47,6 +47,7 @@ public class calculadora {
         return variacionY/variacionX;
     }
 
+    //Función para manejar el error de dividir por cero, en la versión de java trabajada resulta en infinito, por lo que se crea la siguiente función.
     public static boolean rectaParalelaEjeY(double[][] matrizPuntos){
         if ((matrizPuntos[1][0] - matrizPuntos[0][0]) == 0){
             return true;
