@@ -121,9 +121,9 @@ class calculadoraTest {
     }
 
     @Test
-    void determinante(){
-        assertFalse(calculadora.determinante(numerosCuadratica1));
-        assertTrue(calculadora.determinante(numerosDetNegativo));
+    void determinanteCuadratica(){
+        assertFalse(calculadora.determinanteCuadratica(numerosCuadratica1));
+        assertTrue(calculadora.determinanteCuadratica(numerosDetNegativo));
     }
 
     @Test
