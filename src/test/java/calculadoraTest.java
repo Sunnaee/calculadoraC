@@ -12,6 +12,12 @@ class calculadoraTest {
     double [] numerosPorcentaje1 = new double[2];
     double [] numerosPorcentaje2 = new double[2];
 
+    double [] ceros1 = new double[2];
+    double [] ceros2 = new double[3];
+    double [] numerosCeroSobreNegativo = new double[2];
+    double [] numerosDetNegativo = new double[3];
+    double [] cerosCuadratica = new double[3];
+
 
 
     @BeforeEach
@@ -38,6 +44,24 @@ class calculadoraTest {
 
         numerosPorcentaje2[0] = 50; //a 50 le calculo el 110 porciento
         numerosPorcentaje2[1] = 110;
+
+        ceros1[0] = 0;
+        ceros1[1] = 0;
+
+        ceros2[0] = 0;
+        ceros2[1] = 0;
+        ceros2[2] = 0;
+
+        numerosCeroSobreNegativo[0] = 0;
+        numerosCeroSobreNegativo[1] = -10;
+
+        numerosDetNegativo[0] = 2;
+        numerosDetNegativo[1] = 1;
+        numerosDetNegativo[2] = 3;
+
+        cerosCuadratica[0] = 0;
+        cerosCuadratica[1] = 0;
+        cerosCuadratica[2] = 0;
     }
 
     @Test
@@ -82,5 +106,35 @@ class calculadoraTest {
     void solucionCuadratica2() {
         assertEquals(-5,calculadora.solucionCuadratica2(numerosCuadratica1));
         assertEquals(-4,calculadora.solucionCuadratica2(numerosCuadratica2));
+    }
+
+    @Test
+    void ceroSobreCero(){
+        assertTrue(calculadora.ceroSobreCero(ceros1));
+        assertFalse(calculadora.ceroSobreCero(numerosMayorYMenor1));
+    }
+
+    @Test
+    void ceroSobreNegativo(){
+        assertTrue(calculadora.ceroSobreNegativo(numerosCeroSobreNegativo));
+        assertFalse(calculadora.ceroSobreNegativo(numerosIguales));
+    }
+
+    @Test
+    void determinante(){
+        assertFalse(calculadora.determinante(numerosCuadratica1));
+        assertTrue(calculadora.determinante(numerosDetNegativo));
+    }
+
+    @Test
+    void ceroSobreCeroCuadratica(){
+        assertTrue(calculadora.ceroSobreCeroCuadratica(cerosCuadratica));
+        assertFalse(calculadora.ceroSobreCeroCuadratica(numerosCuadratica1));
+    }
+
+    @Test
+    void divisioSobreCeroCuadratica(){
+        assertTrue(calculadora.divisionPorCeroCuadratica(cerosCuadratica));
+        assertFalse(calculadora.divisionPorCeroCuadratica(numerosCuadratica1));
     }
 }
