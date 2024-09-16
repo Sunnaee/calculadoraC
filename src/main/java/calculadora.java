@@ -44,10 +44,14 @@ public class calculadora {
     public static double pendienteRecta(double[][] matrizPuntos){
         double variacionY = matrizPuntos[1][1] - matrizPuntos[0][1];
         double variacionX = matrizPuntos[1][0] - matrizPuntos[0][0];
-        if (variacionX == 0){
-            return 0;
-        }
         return variacionY/variacionX;
+    }
+
+    public static boolean rectaParalelaEjeY(double[][] matrizPuntos){
+        if ((matrizPuntos[1][0] - matrizPuntos[0][0]) == 0){
+            return true;
+        }
+        return false;
     }
 
     //Función para calcular la intersección con el eje y de la recta.
@@ -65,6 +69,10 @@ public class calculadora {
         double[][] matrizPuntos = matrizPuntosRecta();
         System.out.println("Ingrese los datos en el siguiente orden: x1, y1, x2, y2:");
         ingresarPuntosRecta(matrizPuntos, ingresoValor(), ingresoValor(), ingresoValor(), ingresoValor());
-        System.out.println(resultadoEcuacionRecta(pendienteRecta(matrizPuntos), bRecta(matrizPuntos)));
+        if (rectaParalelaEjeY(matrizPuntos)){
+            System.out.println("La recta es paralela al eje y, por lo tanto, la ecuación de la recta es Y = "+matrizPuntos[0][0]);
+        } else {
+            System.out.println(resultadoEcuacionRecta(pendienteRecta(matrizPuntos), bRecta(matrizPuntos)));
+        }
     }
 }
