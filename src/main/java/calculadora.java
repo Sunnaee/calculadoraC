@@ -78,6 +78,55 @@ public class calculadora {
         return (-(numeros[1]) - sqrt((numeros[1]*numeros[1])-(4*numeros[0]*numeros[2]))) / (2*numeros[0]);
     }
 
+    // Inicio de funciones sección 3
+
+    public static double perimetroCuadrado(double lado){
+        return 4*lado;
+    }
+
+    public static double areaCuadrado(double lado){
+        return lado*lado;
+    }
+
+    public static double perimetroRectangulo (double lado1, double lado2){
+        return 2*lado1+2*lado2;
+    }
+
+    public static double areaRectangulo (double lado1, double lado2){
+        return lado1*lado2;
+    }
+
+    public static double perimetroCirculo (double radio) {
+        return 2*Math.PI*radio;
+    }
+
+    public static double areaCirculo (double radio) {
+        return Math.PI*Math.pow(radio, 2);
+    }
+
+    public static double areaEsfera (double radio) {
+        return 4*Math.PI*Math.pow(radio, 2);
+    }
+
+    public static double volumenEsfera (double radio) {
+        return ((4*Math.PI*Math.pow(radio, 3))/3);
+    }
+
+    public static double areaCubo (double lado) {
+        return 6*Math.pow(lado, 2);
+    }
+
+    public static double volumenCubo (double lado) {
+        return Math.pow(lado,3);
+    }
+
+    public static double areaCono (double radioBasal, double generatriz) {
+        return areaCirculo(radioBasal) + Math.PI*radioBasal*generatriz;
+    }
+
+    public static double volumenCono (double radiobasal, double altura) {
+        return altura*Math.PI*Math.pow(radiobasal,2)/3;
+    }
 
 }
 
