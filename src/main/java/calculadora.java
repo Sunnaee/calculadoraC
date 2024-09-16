@@ -57,7 +57,7 @@ public class calculadora {
 
     //Función para devolver en un enunciado la ecuación de la recta.
     public static String resultadoEcuacionRecta(double m, double b){
-        return "La ecuación de la recta en forma Y = mX + b es: Y = "+m+"X "+b+".";
+        return "La ecuación de la recta en forma Y = mX + b es: Y = "+m+"X + ("+b+").";
     }
 
     //Función para ejecutar los métodos necesarios para el cálculo de la ecuación de la recta e imprimir su resultado.
