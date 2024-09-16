@@ -8,7 +8,7 @@ public class calculadora {
 
     public static void ejecutarEcuaciones(){
         double [][] ecuaciones = new double[2][3];
-        mostrarOpcionesEcuaciones();
+        mostrarInformacionEcuaciones();
         ingresarValoresEcuaciones(ecuaciones,"A",0,0);
         ingresarValoresEcuaciones(ecuaciones,"B",0,1);
         ingresarValoresEcuaciones(ecuaciones,"C",0,2);
@@ -36,7 +36,7 @@ public class calculadora {
         ecuaciones[fila][columna] = numero;
     }
 
-    public static void mostrarOpcionesEcuaciones(){
+    public static void mostrarInformacionEcuaciones(){
         System.out.println("Ingresa los valores de las ecuaciones:");
         System.out.println("Forma ecuación:");
         System.out.println("Ax + By = C\nDx + Ey = F");
